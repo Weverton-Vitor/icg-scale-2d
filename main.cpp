@@ -142,42 +142,18 @@ void draw_test()
   glLoadIdentity(); //carrega a matrix identidade
   
   VERTEX cent = calculate_centroid(object);
-  VERTEX base = calculate_base(object);
-  VERTEX top = calculate_top(object);
 
   glColor3f(0.0, 0.0, 1.0); //altera o atributo de cor
   
 
-  // if (control == 1) {
-  //   glTranslatef(base.x, base.y, 0);  
-    
-  // }  else {
-  //    glTranslatef(top.x, top.y, 0);  
-  // }      
-  // glScalef(s_x_inc, s_y_inc, 0);  
-
-    // std::cout<< base.x << ',' << base.y << '\n'; 
-
-  
-  // if (control == 1) {
-  //   glTranslatef(-base.x, -base.y, 0);  
-    
-  // }  else if(control == 2){
-  //   glTranslatef(-top.x, -top.y, 0);  
-
-  // } else {
-  //    glTranslatef(-base.x, -base.y, 0);  
-  // }
-
-    glTranslatef(top.x, top.y, 0);  
+  glTranslatef(cent.x, cent.y, 0);  
   glScalef(s_x_inc, s_y_inc, 0);  
 
   glTranslatef((GLfloat)t_x_inc, (GLfloat)t_y_inc, 0);
-     glTranslatef(-top.x, -top.y, 0);  
+  glTranslatef(-cent.x, -cent.y, 0);  
 
   draw_object(object); //desenha o objeto
   glutPostRedisplay();
-  // VERTEX cent = calculate_centroid(object); //calcula o centróide
   
   glFlush(); //processa as rotinas OpenGL o mais rápido possível
 }
@@ -214,17 +190,9 @@ void keybord_test(GLubyte key, GLint x, GLint y)
     }
     if (key == 115){ // s
       s_y_inc *= 0.99; // tecla para baixo
-      // control = 2; // 2 fixa a base
-
-    // std::cout<< s_y_inc << "-" << t_y_inc << "\n"; 
-
     }
     if (key == 119){ // w
       s_y_inc *= 1.01; // tecla para cima
-      // control = 1; // 1 fixa o top,
-
-    // std::cout<< s_y_inc << " - " << t_y_inc << "\n"; 
-
     }
 
   glutPostRedisplay();
